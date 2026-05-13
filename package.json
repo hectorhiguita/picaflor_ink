@@ -1,0 +1,25 @@
+{
+  "name": "picaflor_ink",
+  "version": "1.0.0",
+  "description": "Repositorio para crear el sitioweb de Picaflor INK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests configured\"",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hectorhiguita/picaflor_ink.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hectorhiguita/picaflor_ink/issues"
+  },
+  "homepage": "https://github.com/hectorhiguita/picaflor_ink#readme",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

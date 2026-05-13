@@ -1,7 +1,7 @@
 {
   "name": "picaflor_ink",
   "version": "1.0.0",
-  "description": "Repositorio para crear el sitioweb de Picaflor INK",
+  "description": "Repositorio para crear el sitio web de Picaflor INK",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests configured\"",
@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/hectorhiguita/picaflor_ink/issues"
   },

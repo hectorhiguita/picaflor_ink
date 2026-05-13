@@ -1,5 +1,5 @@
 # picaflor_ink
-Repositorio para crear el sitioweb de Picaflor INK
+Repositorio para crear el sitio web de Picaflor INK
 
 ## Desarrollo
 

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Hoodie negro">
+  <defs>
+    <linearGradient id="bd" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#080808"/>
+      <stop offset="18%" stop-color="#1A1A1A"/>
+      <stop offset="50%" stop-color="#2C2C2C"/>
+      <stop offset="82%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </linearGradient>
+    <linearGradient id="bv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.07)"/>
+      <stop offset="12%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="74%" stop-color="rgba(255,255,255,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+    </linearGradient>
+    <linearGradient id="hoodGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="40%" stop-color="#181818"/>
+      <stop offset="60%" stop-color="#181818"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <filter id="ds" x="-20%" y="-10%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="11" result="b"/>
+      <feOffset in="b" dy="16" result="o"/>
+      <feComponentTransfer in="o" result="s"><feFuncA type="linear" slope="0.60"/></feComponentTransfer>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="600" height="600" fill="#111111"/>
+  <g filter="url(#ds)">
+    <path d="M 224,158 C 218,135 214,100 216,74 C 220,46 236,28 260,20 C 276,14 288,12 300,12 C 312,12 324,14 340,20 C 364,28 380,46 384,74 C 386,100 382,135 376,158 Z" fill="url(#hoodGrad)" stroke="#333333" stroke-width="1.5"/>
+    <path d="M 234,158 C 230,136 227,104 229,80 C 232,56 244,40 264,34 C 276,30 288,28 300,28 C 312,28 324,30 336,34 C 356,40 368,56 371,80 C 373,104 370,136 366,158 Z" fill="rgba(0,0,0,0.45)"/>
+    <path d="M 270,158 C 268,200 264,250 260,330" stroke="rgba(255,255,255,0.10)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M 330,158 C 332,200 336,250 340,330" stroke="rgba(255,255,255,0.10)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="258" cy="334" rx="6" ry="8" fill="rgba(255,255,255,0.15)"/>
+    <ellipse cx="342" cy="334" rx="6" ry="8" fill="rgba(255,255,255,0.15)"/>
+    <path d="M 246,158 C 236,158 208,115 175,115 L 82,198 L 108,264 L 198,237 L 198,512 L 402,512 L 402,237 L 492,264 L 518,198 L 425,115 C 392,115 364,158 354,158 C 346,168 326,182 300,190 C 274,182 254,168 246,158 Z" fill="url(#bd)" stroke="#383838" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M 246,158 C 236,158 208,115 175,115 L 82,198 L 108,264 L 198,237 L 198,512 L 402,512 L 402,237 L 492,264 L 518,198 L 425,115 C 392,115 364,158 354,158 C 346,168 326,182 300,190 C 274,182 254,168 246,158 Z" fill="url(#bv)" stroke="none"/>
+  </g>
+  <path d="M 175,115 L 82,198 L 108,264 L 198,237 L 198,175 Z" fill="rgba(0,0,0,0.30)"/>
+  <path d="M 425,115 L 518,198 L 492,264 L 402,237 L 402,175 Z" fill="rgba(0,0,0,0.30)"/>
+  <line x1="198" y1="168" x2="198" y2="237" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <line x1="402" y1="168" x2="402" y2="237" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <rect x="218" y="368" width="164" height="94" rx="4" fill="rgba(0,0,0,0.25)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <line x1="300" y1="368" x2="300" y2="462" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <path d="M 198,498 L 402,498 L 402,512 L 198,512 Z" fill="rgba(0,0,0,0.25)"/>
+  <line x1="300" y1="192" x2="300" y2="498" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+  <path d="M 262,360 C 278,368 292,366 300,364 C 308,366 322,368 338,360" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

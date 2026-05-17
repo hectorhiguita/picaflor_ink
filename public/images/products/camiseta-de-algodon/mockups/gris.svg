@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Camiseta de algodón gris">
+  <defs>
+    <linearGradient id="bd" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#545454"/>
+      <stop offset="18%" stop-color="#787878"/>
+      <stop offset="50%" stop-color="#929292"/>
+      <stop offset="82%" stop-color="#787878"/>
+      <stop offset="100%" stop-color="#545454"/>
+    </linearGradient>
+    <linearGradient id="bv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.06)"/>
+      <stop offset="12%" stop-color="rgba(0,0,0,0)"/>
+      <stop offset="74%" stop-color="rgba(0,0,0,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.28)"/>
+    </linearGradient>
+    <filter id="ds" x="-20%" y="-10%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="11" result="b"/>
+      <feOffset in="b" dy="16" result="o"/>
+      <feComponentTransfer in="o" result="s"><feFuncA type="linear" slope="0.48"/></feComponentTransfer>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="600" height="600" fill="#111111"/>
+  <g filter="url(#ds)">
+    <path d="M 256,110 C 248,110 220,108 182,108 L 88,192 L 113,258 L 203,232 L 203,492 L 397,492 L 397,232 L 487,258 L 512,192 L 418,108 C 380,108 352,110 344,110 C 336,148 322,183 300,194 C 278,183 264,148 256,110 Z" fill="url(#bd)" stroke="#5E5E5E" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M 256,110 C 248,110 220,108 182,108 L 88,192 L 113,258 L 203,232 L 203,492 L 397,492 L 397,232 L 487,258 L 512,192 L 418,108 C 380,108 352,110 344,110 C 336,148 322,183 300,194 C 278,183 264,148 256,110 Z" fill="url(#bv)" stroke="none"/>
+  </g>
+  <path d="M 182,108 L 88,192 L 113,258 L 203,232 L 203,168 Z" fill="rgba(0,0,0,0.12)"/>
+  <path d="M 418,108 L 512,192 L 487,258 L 397,232 L 397,168 Z" fill="rgba(0,0,0,0.12)"/>
+  <line x1="203" y1="162" x2="203" y2="232" stroke="rgba(0,0,0,0.16)" stroke-width="1.5"/>
+  <line x1="397" y1="162" x2="397" y2="232" stroke="rgba(0,0,0,0.16)" stroke-width="1.5"/>
+  <path d="M 256,110 C 264,148 278,183 300,194 C 322,183 336,148 344,110 C 334,116 320,152 300,161 C 280,152 266,116 256,110 Z" fill="rgba(0,0,0,0.20)"/>
+  <path d="M 265,330 C 280,338 293,336 300,334 C 307,336 320,338 335,330" fill="none" stroke="rgba(0,0,0,0.09)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="300" y1="196" x2="300" y2="492" stroke="rgba(0,0,0,0.05)" stroke-width="1.5"/>
+  <path d="M 256,110 L 240,110 L 215,108 L 208,112 C 212,128 222,150 238,122 C 244,114 250,110 256,110 Z" fill="rgba(255,255,255,0.30)"/>
+  <path d="M 344,110 L 360,110 L 385,108 L 392,112 C 388,128 378,150 362,122 C 356,114 350,110 344,110 Z" fill="rgba(255,255,255,0.30)"/>
+</svg>

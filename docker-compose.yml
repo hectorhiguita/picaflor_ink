@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: picaflor_ink
+      POSTGRES_USER: picaflor
+      POSTGRES_PASSWORD: picaflor
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U picaflor -d picaflor_ink"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "5433:5432"
+    volumes:
+      - picaflor_postgres:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://picaflor:picaflor@db:5432/picaflor_ink?schema=public
+      NEXTAUTH_SECRET: local-container-secret-change-me
+      NEXTAUTH_URL: http://localhost:3000
+      WOMPI_PUBLIC_KEY: ""
+      WOMPI_PRIVATE_KEY: ""
+      WOMPI_EVENTS_SECRET: ""
+      EMAIL_FROM: noreply@picaflorink.shop
+      EMAIL_PROVIDER_API_KEY: ""
+      INSTAGRAM_ACCESS_TOKEN: ""
+    ports:
+      - "3010:3000"
+
+volumes:
+  picaflor_postgres:

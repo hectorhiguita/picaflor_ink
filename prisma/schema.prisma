@@ -1,0 +1,291 @@
+// Picaflor INK — Prisma Schema
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum StockStatus {
+  AVAILABLE
+  LIMITED
+  UNAVAILABLE
+}
+
+enum PrintPosition {
+  FRONT_CHEST
+  BACK
+  SLEEVE
+  MUG_FRONT
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  CONFIRMED
+  IN_PRODUCTION
+  SHIPPED
+  DELIVERED
+  CANCELED
+}
+
+enum PaymentProvider {
+  WOMPI
+}
+
+enum CouponType {
+  PERCENTAGE
+  FIXED_COP
+}
+
+// ─── User & Auth ──────────────────────────────────────────────────────────────
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  passwordHash    String?
+  name            String?
+  phone           String?
+  role            Role      @default(CUSTOMER)
+  emailVerifiedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  profile         CustomerProfile?
+  addresses       Address[]
+  carts           Cart[]
+  orders          Order[]
+}
+
+model CustomerProfile {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  defaultAddressId String?
+  marketingOptIn   Boolean  @default(false)
+
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Address {
+  id       String  @id @default(cuid())
+  userId   String?
+  fullName String
+  phone    String
+  email    String
+  line1    String
+  line2    String?
+  city     String
+  zone     String?
+  notes    String?
+
+  user     User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+// ─── Catalog ──────────────────────────────────────────────────────────────────
+
+model Category {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String?
+  sortOrder   Int       @default(0)
+  active      Boolean   @default(true)
+
+  products    Product[]
+}
+
+model Product {
+  id             String           @id @default(cuid())
+  slug           String           @unique
+  name           String
+  description    String?
+  categoryId     String
+  basePriceCop   Int
+  printTechnique String           @default("DTF")
+  active         Boolean          @default(true)
+  featured       Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  category       Category         @relation(fields: [categoryId], references: [id])
+  variants       ProductVariant[]
+  printableAreas PrintableArea[]
+  cartItems      CartItem[]
+}
+
+model ProductVariant {
+  id               String      @id @default(cuid())
+  productId        String
+  colorName        String
+  colorHex         String
+  size             String
+  sku              String      @unique
+  priceOverrideCop Int?
+  stockStatus      StockStatus @default(AVAILABLE)
+  mockupImageId    String?
+  active           Boolean     @default(true)
+
+  product          Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  mockupImage      MediaAsset? @relation(fields: [mockupImageId], references: [id])
+  cartItems        CartItem[]
+}
+
+model MediaAsset {
+  id         String   @id @default(cuid())
+  storageKey String
+  url        String
+  mimeType   String
+  width      Int?
+  height     Int?
+  sizeBytes  Int?
+  altText    String?
+  createdAt  DateTime @default(now())
+
+  variantMockups   ProductVariant[]
+  designCatalogItems DesignCatalogItem[]
+  cartItemPreviews CartItem[]           @relation("CartItemPreview")
+  orderItemPreviews OrderItem[]         @relation("OrderItemPreview")
+}
+
+model DesignCatalogItem {
+  id           String     @id @default(cuid())
+  slug         String     @unique
+  name         String
+  category     String
+  imageAssetId String?
+  active       Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  imageAsset   MediaAsset? @relation(fields: [imageAssetId], references: [id])
+}
+
+model PrintableArea {
+  id        String        @id @default(cuid())
+  productId String
+  position  PrintPosition
+  x         Float
+  y         Float
+  width     Float
+  height    Float
+  rotation  Float         @default(0)
+  active    Boolean       @default(true)
+
+  product   Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Cart ─────────────────────────────────────────────────────────────────────
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String?
+  sessionId String
+  currency  String     @default("COP")
+  couponId  String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  coupon    Coupon?    @relation(fields: [couponId], references: [id])
+  items     CartItem[]
+}
+
+model CartItem {
+  id                String     @id @default(cuid())
+  cartId            String
+  productId         String
+  variantId         String
+  quantity          Int        @default(1)
+  unitPriceCop      Int
+  previewAssetId    String?
+  customizationJson Json?
+  createdAt         DateTime   @default(now())
+
+  cart              Cart       @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product           Product    @relation(fields: [productId], references: [id])
+  variant           ProductVariant @relation(fields: [variantId], references: [id])
+  previewAsset      MediaAsset? @relation("CartItemPreview", fields: [previewAssetId], references: [id])
+}
+
+// ─── Orders ───────────────────────────────────────────────────────────────────
+
+model Order {
+  id                  String          @id @default(cuid())
+  orderNumber         String          @unique
+  userId              String?
+  customerEmail       String
+  customerName        String
+  customerPhone       String
+  shippingAddressJson Json
+  status              OrderStatus     @default(PENDING_PAYMENT)
+  subtotalCop         Int
+  discountCop         Int             @default(0)
+  shippingCop         Int?
+  totalCop            Int
+  paymentProvider     PaymentProvider @default(WOMPI)
+  paymentReference    String?
+  paidAt              DateTime?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+
+  user                User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items               OrderItem[]
+}
+
+model OrderItem {
+  id                String     @id @default(cuid())
+  orderId           String
+  productName       String
+  variantLabel      String
+  quantity          Int
+  unitPriceCop      Int
+  previewAssetId    String?
+  customizationJson Json?
+
+  order             Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  previewAsset      MediaAsset? @relation("OrderItemPreview", fields: [previewAssetId], references: [id])
+}
+
+// ─── Coupons ──────────────────────────────────────────────────────────────────
+
+model Coupon {
+  id          String     @id @default(cuid())
+  code        String     @unique
+  type        CouponType
+  value       Int
+  active      Boolean    @default(true)
+  expiresAt   DateTime?
+  usageLimit  Int?
+  usageCount  Int        @default(0)
+
+  carts       Cart[]
+}
+
+// ─── Shipping ─────────────────────────────────────────────────────────────────
+
+model ShippingRate {
+  id        String  @id @default(cuid())
+  name      String
+  zone      String
+  priceCop  Int?
+  active    Boolean @default(true)
+  sortOrder Int     @default(0)
+}
+
+// ─── Site Settings ────────────────────────────────────────────────────────────
+
+model SiteSetting {
+  key       String   @id
+  valueJson Json
+  updatedAt DateTime @updatedAt
+}

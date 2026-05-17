@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Camiseta de tela fría blanca">
+  <defs>
+    <linearGradient id="bd" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#D0D0D0"/>
+      <stop offset="18%" stop-color="#F0F0F0"/>
+      <stop offset="50%" stop-color="#FEFEFE"/>
+      <stop offset="82%" stop-color="#F0F0F0"/>
+      <stop offset="100%" stop-color="#D0D0D0"/>
+    </linearGradient>
+    <linearGradient id="bv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.06)"/>
+      <stop offset="12%" stop-color="rgba(0,0,0,0)"/>
+      <stop offset="74%" stop-color="rgba(0,0,0,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.20)"/>
+    </linearGradient>
+    <filter id="ds" x="-20%" y="-10%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="11" result="b"/>
+      <feOffset in="b" dy="16" result="o"/>
+      <feComponentTransfer in="o" result="s"><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="600" height="600" fill="#111111"/>
+  <g filter="url(#ds)">
+    <path d="M 260,114 C 252,114 226,112 188,112 L 90,194 L 115,258 L 207,234 L 207,490 L 393,490 L 393,234 L 485,258 L 510,194 L 412,112 C 374,112 348,114 340,114 C 332,150 318,184 300,194 C 282,184 268,150 260,114 Z" fill="url(#bd)" stroke="#C4C4C4" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M 260,114 C 252,114 226,112 188,112 L 90,194 L 115,258 L 207,234 L 207,490 L 393,490 L 393,234 L 485,258 L 510,194 L 412,112 C 374,112 348,114 340,114 C 332,150 318,184 300,194 C 282,184 268,150 260,114 Z" fill="url(#bv)" stroke="none"/>
+  </g>
+  <path d="M 188,112 L 90,194 L 115,258 L 207,234 L 207,170 Z" fill="rgba(0,0,0,0.08)"/>
+  <path d="M 412,112 L 510,194 L 485,258 L 393,234 L 393,170 Z" fill="rgba(0,0,0,0.08)"/>
+  <line x1="207" y1="164" x2="207" y2="234" stroke="rgba(0,0,0,0.13)" stroke-width="1.5"/>
+  <line x1="393" y1="164" x2="393" y2="234" stroke="rgba(0,0,0,0.13)" stroke-width="1.5"/>
+  <path d="M 260,114 C 268,150 282,184 300,194 C 318,184 332,150 340,114 C 330,120 316,154 300,163 C 284,154 270,120 260,114 Z" fill="rgba(0,0,0,0.13)"/>
+  <path d="M 265,332 C 280,340 293,338 300,336 C 307,338 320,340 335,332" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="300" y1="196" x2="300" y2="490" stroke="rgba(0,0,0,0.04)" stroke-width="1.5"/>
+  <line x1="207" y1="350" x2="207" y2="490" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+  <line x1="393" y1="350" x2="393" y2="490" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+</svg>

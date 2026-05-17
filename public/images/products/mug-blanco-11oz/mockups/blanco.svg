@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Mockup mug blanco 11oz">
+  <rect width="600" height="600" fill="#111"/>
+  <path d="M170 170h244v216c0 66-54 120-120 120h-4c-66 0-120-54-120-120z" fill="#fbfbfb" stroke="#ddd" stroke-width="8"/>
+  <path d="M414 226h46c38 0 70 32 70 70s-32 70-70 70h-46" fill="none" stroke="#ddd" stroke-width="28" stroke-linecap="round"/>
+  <rect x="215" y="235" width="150" height="120" rx="10" fill="none" stroke="#00cfff" stroke-width="4" stroke-dasharray="10 8"/>
+  <path d="M194 190h196" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+</svg>
